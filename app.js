@@ -1,10 +1,10 @@
 const PAGE_SIZE = 36;
 const ASSETS = {
-  Motor: "/assets/motor.jpg", "Partes Mecanicas": "/assets/mecanica.png", Chasis: "/assets/mecanica.png",
-  CUBIERTAS: "/assets/llanta.png", LLANTAS: "/assets/llantas.png", "LLANTAS PARA MOTO": "/assets/llantas.png",
-  Eléctrico: "/assets/electricidad.png", Eléctrica: "/assets/electricidad.png", Suspensión: "/assets/suspension.jpg",
-  Rueda: "/assets/camaras.jpg", Freno: "/assets/mecanica.png", Lubricantes: "/assets/lubricantes.png",
-  Accesorios: "/assets/accesorios.png", Baterías: "/assets/baterias.jpg", Piloto: "/assets/electricidad.png",
+  "Motor y transmisión": "/assets/motor.jpg", Frenos: "/assets/mecanica.png",
+  "Sistema eléctrico": "/assets/electricidad.png", "Llantas y ruedas": "/assets/llantas.png",
+  Suspensión: "/assets/suspension.jpg", "Lubricantes y filtros": "/assets/lubricantes.png",
+  "Chasis y carrocería": "/assets/mecanica.png", "Accesorios y equipo": "/assets/accesorios.png",
+  "Refacciones generales": "/assets/mecanica.png",
 };
 const DEFAULT_IMAGE = "/assets/mecanica.png";
 const state = { products: [], filtered: [], page: 1, category: "", query: "", timer: 0 };
@@ -109,6 +109,12 @@ function productCard(product) {
   imageBox.className = "product-image";
   const fallback = ASSETS[product.category] || DEFAULT_IMAGE;
   imageBox.append(makeImage(product.image, cleanText(product.name), fallback, ""));
+  if (product.imageFallback) {
+    const imageLabel = document.createElement("span");
+    imageLabel.className = "product-image-label";
+    imageLabel.textContent = "Imagen ilustrativa";
+    imageBox.append(imageLabel);
+  }
   const copy = document.createElement("span");
   copy.className = "product-copy";
   const brand = document.createElement("small");
