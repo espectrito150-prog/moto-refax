@@ -16,7 +16,7 @@ function cleanText(value) {
 
 async function loadCatalog() {
   try {
-    const response = await fetch("/catalog.json.gz");
+    const response = await fetch("/catalog.json.gz?v=__CATALOG_HASH__");
     if (!response.ok) throw new Error("No se pudo abrir el catálogo");
     if (!window.DecompressionStream) throw new Error("Este navegador no puede abrir el catálogo comprimido.");
     const compressed = await response.arrayBuffer();
